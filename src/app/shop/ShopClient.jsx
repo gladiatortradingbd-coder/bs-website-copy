@@ -33,7 +33,7 @@ export default function ShopClient() {
   }, [maxPrice, query, selectedCategory, showNewArrivals]);
 
   useEffect(() => {
-    const controller = new AbortController();
+    let ignore = false;
     const nextParams = new URLSearchParams({
       limit: String(pageSize),
       page: String(page),
@@ -56,13 +56,13 @@ export default function ShopClient() {
     }
 
     Promise.resolve().then(() => {
-      if (!controller.signal.aborted) {
+      if (!ignore) {
         setIsLoading(true);
         setErrorMessage("");
       }
     });
 
-    fetch(`/api/products?${nextParams.toString()}`, { signal: controller.signal })
+    fetch(`/api/products?${nextParams.toString()}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Could not load products.");
@@ -71,6 +71,10 @@ export default function ShopClient() {
         return response.json();
       })
       .then((data) => {
+        if (ignore) {
+          return;
+        }
+
         setProducts(Array.isArray(data?.products) ? data.products : []);
         const nextTotal = Number(data?.total);
         setTotalCount(Number.isFinite(nextTotal) ? nextTotal : 0);
@@ -80,19 +84,21 @@ export default function ShopClient() {
         }
       })
       .catch((error) => {
-        if (error?.name !== "AbortError") {
+        if (!ignore) {
           setProducts([]);
           setTotalCount(0);
           setErrorMessage(error instanceof Error ? error.message : "Could not load products.");
         }
       })
       .finally(() => {
-        if (!controller.signal.aborted) {
+        if (!ignore) {
           setIsLoading(false);
         }
       });
 
-    return () => controller.abort();
+    return () => {
+      ignore = true;
+    };
   }, [maxPrice, page, pageSize, query, selectedCategory, showNewArrivals]);
 
   const totalPages = useMemo(() => {

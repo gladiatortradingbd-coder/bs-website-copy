@@ -83,21 +83,27 @@ export default function SearchBar({
       return undefined;
     }
 
-    const controller = new AbortController();
+    let ignore = false;
 
-    fetch(`${liveResultsEndpoint}?categories=1`, { signal: controller.signal })
+    fetch(`${liveResultsEndpoint}?categories=1`)
       .then((response) => response.json())
       .then((data) => {
+        if (ignore) {
+          return;
+        }
+
         const nextCategories = Array.isArray(data?.categories) ? data.categories : [];
         setFilterCategories(nextCategories);
       })
       .catch((error) => {
-        if (error?.name !== "AbortError") {
+        if (!ignore) {
           setFilterCategories([]);
         }
       });
 
-    return () => controller.abort();
+    return () => {
+      ignore = true;
+    };
   }, [liveResultsEndpoint, showFilters]);
 
   useEffect(() => {
@@ -111,7 +117,7 @@ export default function SearchBar({
       return undefined;
     }
 
-    const controller = new AbortController();
+    let ignore = false;
     const nextParams = new URLSearchParams({
       search: normalizedQuery,
       limit: String(liveResultsLimit),
@@ -127,23 +133,29 @@ export default function SearchBar({
 
     setIsLoading(true);
 
-    fetch(`${liveResultsEndpoint}?${nextParams.toString()}`, { signal: controller.signal })
+    fetch(`${liveResultsEndpoint}?${nextParams.toString()}`)
       .then((response) => response.json())
       .then((data) => {
+        if (ignore) {
+          return;
+        }
+
         setSuggestions(Array.isArray(data?.products) ? data.products : []);
       })
       .catch((error) => {
-        if (error?.name !== "AbortError") {
+        if (!ignore) {
           setSuggestions([]);
         }
       })
       .finally(() => {
-        if (!controller.signal.aborted) {
+        if (!ignore) {
           setIsLoading(false);
         }
       });
 
-    return () => controller.abort();
+    return () => {
+      ignore = true;
+    };
   }, [activeFilter, liveResultsEndpoint, liveResultsLimit, normalizedQuery, priceLimit]);
 
   useEffect(() => {
