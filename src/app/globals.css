@@ -1,0 +1,440 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="black"], [data-theme="black"] *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+html[data-theme="black"] {
+  --background: #0c0f0d;
+  --foreground: #f4f4ef;
+  --surface: #131716;
+  --border: #2a2f2d;
+  --muted: #1c211f;
+  --muted-foreground: #a3a3a3;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border-color: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+}
+
+html[data-theme="white"] {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+  }
+}
+
+/* Infinite horizontal marquee */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.categories-section {
+  width: min(1200px, 92vw);
+  margin: 64px auto;
+}
+
+.categories-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.categories-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.8vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.categories-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #fff;
+  background: #111;
+}
+
+.categories-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  min-height: 620px;
+}
+
+.categories-box {
+  min-width: 0;
+}
+
+.categories-a,
+.categories-b,
+.categories-c,
+.categories-d {
+  display: grid;
+  gap: 18px;
+}
+
+.categories-a {
+  grid-template-rows: 1fr 1fr;
+}
+
+.categories-c {
+  grid-template-columns: 1fr 1fr;
+}
+
+.categories-d {
+  grid-template-columns: 1fr 1.14fr;
+}
+
+.categories-b {
+  grid-template-rows: 1.14fr 1fr;
+}
+
+.categories-image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  display: block;
+  min-height: 220px;
+}
+
+.categories-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.categories-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 30%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.categories-card-title {
+  margin: 0;
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  color: #fff;
+  font-size: clamp(1rem, 1.7vw, 1.5rem);
+  letter-spacing: 0.02em;
+}
+
+.categories-image-card:hover .categories-card-image {
+  transform: scale(1.06);
+}
+
+.categories-promo-card {
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  background: #1f3f2f;
+  color: #fff;
+}
+
+.categories-promo-card h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.2;
+}
+
+.categories-promo-btn {
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #173724;
+  background: #f3f5f3;
+}
+
+@media (max-width: 991px) {
+  .categories-layout {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .categories-a,
+  .categories-b {
+    grid-template-rows: auto;
+  }
+
+  .categories-image-card {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 680px) {
+  .categories-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .categories-c,
+  .categories-d {
+    grid-template-columns: 1fr;
+  }
+
+  .categories-image-card {
+    min-height: 180px;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* keyframes used by the footer runner */
+@keyframes moving {
+  0% {
+    left: -20px;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* class used in Footer.js: <span class="absolute ... animate-moving"> */
+.animate-moving {
+  animation: moving 2s linear infinite;
+}
+
+@keyframes postMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-post-marquee {
+  animation: postMarquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-post-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-bar {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* ==========================================
+   SUBTLE MICRO-ANIMATIONS
+   All use transform/opacity (GPU-composited)
+   ========================================== */
+
+/* Gentle floating for decorative elements */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: gentle-float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Shimmer sweep on buttons */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer 0.75s ease-out;
+}
+
+/* Soft pulse for stock badges */
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2.5s ease-in-out infinite;
+}
+
+/* Stagger children reveal helper */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: stagger-reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 320ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 480ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 560ms; }
+
+@keyframes stagger-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

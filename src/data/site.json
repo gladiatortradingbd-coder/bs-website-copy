@@ -1,0 +1,19 @@
+{
+  "footer": {
+    "companyName": "SUCCU & CACTUS HUT",
+    "office": {
+      "address": [
+        "H-145, road-5, shangbadik abashik alaka, kalshi,",
+        "Mirpur 11, dhaka-1216, Bangladesh"
+      ],
+      "email": "succulenthutt@gmail.com",
+      "phone": "01850-328338"
+    },
+    "links": ["Home", "Shop", "About", "Contact"],
+    "socialLinks": [
+      { "label": "facebook", "href": "https://www.facebook.com/SucculentHutt", "icon": "mdi:facebook" },
+      { "label": "instagram", "href": "https://www.instagram.com/succulenthutt", "icon": "mdi:instagram" },
+      { "label": "twitter", "href": "#", "icon": "mdi:twitter" }
+    ]
+  }
+}
