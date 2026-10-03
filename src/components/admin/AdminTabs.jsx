@@ -7,6 +7,7 @@ import AnalyticsPanel from "./AnalyticsPanel";
 import CustomersPanel from "./CustomersPanel";
 import AdminOrdersPanel from "./AdminOrdersPanel";
 import CategoryImagesPanel from "./CategoryImagesPanel";
+import HeroImagesPanel from "./HeroImagesPanel";
 import AdminBlogPanel from "./AdminBlogPanel";
 import Button from "@/components/ui/Button";
 
@@ -35,6 +36,10 @@ const TAB_META = {
     title: "Category images",
     description: "Update homepage category visuals.",
   },
+  hero: {
+    title: "Hero images",
+    description: "Choose and order the homepage hero rotation.",
+  },
   blog: {
     title: "Blog posts",
     description: "Write and publish SEO-friendly blog articles.",
@@ -51,6 +56,7 @@ export default function AdminTabs({ initialProducts, initialBlogPosts, initialOr
     { id: "inventory", label: "Inventory" },
     { id: "orders", label: "Orders" },
     { id: "category", label: "Category" },
+    { id: "hero", label: "Hero" },
     { id: "blog", label: "Blog" },
   ];
 
@@ -100,6 +106,8 @@ export default function AdminTabs({ initialProducts, initialBlogPosts, initialOr
           <AdminOrdersPanel />
         ) : tab === "blog" ? (
           <AdminBlogPanel initialPosts={initialBlogPosts} />
+        ) : tab === "hero" ? (
+          <HeroImagesPanel />
         ) : (
           <CategoryImagesPanel />
         )}

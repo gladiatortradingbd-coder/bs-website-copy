@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import HeroSection from "@/components/sections/home/HeroSection";
 import CategoriesSection from "@/components/sections/home/CategoriesSection";
 import BestSellers from "@/components/sections/home/BestSellers";
+import { getHeroImages } from "@/lib/hero-images";
 
 const NewArrivalsSection = dynamic(() => import("@/components/sections/home/NewArrivalsSection"));
 const TestimonialMarquee = dynamic(() => import("@/components/sections/home/TestimonialMarquee"));
@@ -10,10 +11,12 @@ const PlantCareSection = dynamic(() => import("@/components/sections/home/PlantC
 
 export const revalidate = 3600;
 
-export default function Home() {
+export default async function Home() {
+  const heroImages = await getHeroImages();
+
   return (
     <main>
-      <HeroSection />
+      <HeroSection images={heroImages} />
       <CategoriesSection />
       <BestSellers />
       <NewArrivalsSection />
