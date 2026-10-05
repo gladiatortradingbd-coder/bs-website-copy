@@ -3,8 +3,8 @@ import AppProviders from "./providers";
 import SiteShell from "./SiteShell";
 
 export const metadata = {
-  title: "Succulent Hut",
-  description: "Plant shop e-commerce website",
+  title: "Aarong",
+  description: "Saree shop e-commerce website",
 };
 
 export default function RootLayout({ children }) {
