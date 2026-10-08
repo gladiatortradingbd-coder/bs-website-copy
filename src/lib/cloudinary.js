@@ -12,6 +12,10 @@ function isRemoteImageSource(value) {
   return typeof value === "string" && /^https?:\/\//i.test(value);
 }
 
+function isFileSource(value) {
+  return value && typeof value.arrayBuffer === "function" && typeof value.type === "string";
+}
+
 function buildSignature(params, apiSecret) {
   const payload = Object.keys(params)
     .sort()
@@ -68,13 +72,17 @@ export function getCloudinaryPublicId(source) {
 }
 
 async function uploadUnsigned({ cloudName, source, uploadPreset }) {
+  const body = new FormData();
+  body.append("file", isFileSource(source) ? new Blob([await source.arrayBuffer()], { type: source.type }) : source);
+  body.append("upload_preset", uploadPreset);
+
   const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
     method: "POST",
-    body: new URLSearchParams({ file: source, upload_preset: uploadPreset }),
+    body,
   });
 
   if (!response.ok) {
-    throw new Error("Could not upload the product photo to Cloudinary.");
+    throw new Error(await getCloudinaryError(response, "Could not upload the photo to Cloudinary."));
   }
 
   const data = await response.json();
@@ -88,12 +96,11 @@ async function uploadSigned({ cloudName, source, apiKey, apiSecret, folder }) {
     : `timestamp=${timestamp}${apiSecret}`;
   const signature = createHash("sha1").update(signingPayload).digest("hex");
 
-  const params = new URLSearchParams({
-    file: source,
-    api_key: apiKey,
-    timestamp: String(timestamp),
-    signature,
-  });
+  const params = new FormData();
+  params.append("file", isFileSource(source) ? new Blob([await source.arrayBuffer()], { type: source.type }) : source);
+  params.append("api_key", apiKey);
+  params.append("timestamp", String(timestamp));
+  params.append("signature", signature);
 
   if (hasValue(folder)) {
     params.append("folder", folder);
@@ -105,11 +112,21 @@ async function uploadSigned({ cloudName, source, apiKey, apiSecret, folder }) {
   });
 
   if (!response.ok) {
-    throw new Error("Could not upload the product photo to Cloudinary.");
+    throw new Error(await getCloudinaryError(response, "Could not upload the photo to Cloudinary."));
   }
 
   const data = await response.json();
   return data.secure_url;
+}
+
+async function getCloudinaryError(response, fallback) {
+  try {
+    const data = await response.json();
+    const message = data?.error?.message;
+    return message ? `Cloudinary upload failed: ${message}` : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 async function destroySigned({ cloudName, publicId, apiKey, apiSecret }) {
@@ -154,6 +171,10 @@ export async function uploadPhotoToCloudinary(source) {
   }
 
   if (!hasValue(cloudName)) {
+    if (isFileSource(source)) {
+      throw new Error("Cloudinary is not configured, so the selected image could not be uploaded.");
+    }
+
     return source;
   }
 
@@ -163,6 +184,10 @@ export async function uploadPhotoToCloudinary(source) {
   }
 
   if (!hasValue(apiKey) || !hasValue(apiSecret)) {
+    if (isFileSource(source)) {
+      throw new Error("Cloudinary API credentials are not configured, so the selected image could not be uploaded.");
+    }
+
     return source;
   }
 
