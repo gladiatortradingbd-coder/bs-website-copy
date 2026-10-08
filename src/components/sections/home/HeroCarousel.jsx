@@ -32,11 +32,11 @@ export default function HeroCarousel({ images }) {
       <div className="relative h-[36svh] w-full max-w-7xl overflow-hidden rounded-2xl bg-muted sm:h-[42svh] sm:rounded-3xl md:h-screen">
         <div className="relative z-10 flex flex-col items-center gap-2 pb-4 pt-4 sm:gap-3 sm:pb-6 sm:pt-10 md:gap-5 md:pb-10 md:pt-20">
           <FadeIn delay={100} direction="up">
-            <h1 className="text-center text-3xl font-bold leading-tight text-white sm:text-5xl md:text-7xl">Eco-friendly plants</h1>
+            <h1 className="text-center text-3xl font-bold leading-tight text-white sm:text-5xl md:text-7xl">Timeless Elegance in Every Drape</h1>
           </FadeIn>
           <FadeIn delay={250} direction="up">
             <p className="max-w-[280px] text-center text-xs leading-normal text-white sm:max-w-lg sm:text-sm md:max-w-2xl md:text-lg">
-              Handpicked indoor plants, rare tropicals, and curated pots — delivered fresh to your door across Bangladesh.
+              Exquisite handwoven sarees, luxurious silks, and curated ethnic wear — crafted with tradition, delivered to your door across Bangladesh.
             </p>
           </FadeIn>
           <FadeIn delay={400} direction="up">

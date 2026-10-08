@@ -87,7 +87,7 @@ export default function Navbar() {
 
             <Suspense fallback={null}>
               <SearchBar
-                placeholder="Search plants..."
+                placeholder="Search sarees..."
                 className="flex-1 bg-background"
                 submitHref="/shop"
                 filterHref="/shop"
@@ -166,8 +166,7 @@ export default function Navbar() {
               />
 
               <div className="flex flex-col leading-tight">
-                <div className="mx-auto text-[10px] tracking-wide">SUCCU & CACTUS</div>
-                <div className="mx-auto text-[11px] font-bold tracking-widest">HUT</div>
+                <div className="mx-auto text-[14px] font-bold tracking-widest">Aarong</div>
               </div>
             </Link>
 
@@ -181,7 +180,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Suspense fallback={null}>
               <SearchBar
-                placeholder="Search plants..."
+                placeholder="Search sarees..."
                 className="hidden w-60 lg:flex bg-background"
                 submitHref="/shop"
                 filterHref="/shop"
@@ -229,8 +228,7 @@ export default function Navbar() {
                     className="rounded-full shadow-sm"
                   />
                   <div className="flex flex-col leading-tight">
-                    <div className="text-[10px] text-muted-foreground tracking-wide uppercase">Succu & Cactus</div>
-                    <div className="text-[14px] font-bold tracking-widest text-foreground">HUT</div>
+                    <div className="text-[16px] font-bold tracking-widest text-foreground">Aarong</div>
                   </div>
                 </Link>
                 <button
@@ -247,7 +245,7 @@ export default function Navbar() {
               <div className="relative">
                 <Suspense fallback={null}>
                   <SearchBar
-                    placeholder="Search plants..."
+                    placeholder="Search sarees..."
                     className="w-full bg-background shadow-sm border border-gray-100 dark:border-neutral-700"
                     compact
                     submitHref="/shop"

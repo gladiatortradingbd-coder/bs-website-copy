@@ -1,12 +1,12 @@
 export default function PlantSlider() {
-    const plants = [
-        "Outdoor Plants",
-        "Office Plants",
-        "Indoor Plants",
-        "Flowering Plants",
-        "Air-Purifying Plants",
-        "Pet Friendly",
-        "Low-Light Plants",
+    const categories = [
+        "Silk Sarees",
+        "Cotton Sarees",
+        "Jamdani Sarees",
+        "Muslin Sarees",
+        "Tant Sarees",
+        "Kantha Sarees",
+        "Banarasi Sarees",
     ];
 
     return (
@@ -24,7 +24,7 @@ export default function PlantSlider() {
 
                 {/* First Set */}
                 <div className="flex items-center gap-6 px-4 sm:gap-8 sm:px-6 md:gap-12 md:px-8">
-                    {plants.map((plant, index) => (
+                    {categories.map((item, index) => (
                         <div
                             key={index}
                             className="
@@ -41,13 +41,13 @@ export default function PlantSlider() {
                 font-medium
               "
                         >
-                            <span>{plant}</span>
+                            <span>{item}</span>
 
                             <span className="
                 w-1.5 h-1.5
                 sm:w-2 sm:h-2
                 rounded-full
-                bg-lime-400
+                bg-rose-400
               "></span>
                         </div>
                     ))}
@@ -55,7 +55,7 @@ export default function PlantSlider() {
 
                 {/* Duplicate Set for Infinite Effect */}
                                 <div className="flex items-center gap-6 px-4 sm:gap-8 sm:px-6 md:gap-12 md:px-8">
-                    {plants.map((plant, index) => (
+                    {categories.map((item, index) => (
                         <div
                             key={index}
                             className="
@@ -72,13 +72,13 @@ export default function PlantSlider() {
                 font-medium
               "
                         >
-                            <span>{plant}</span>
+                            <span>{item}</span>
 
                             <span className="
                                 w-1.5 h-1.5
                                 sm:w-2 sm:h-2
                 rounded-full
-                bg-lime-400
+                bg-rose-400
               "></span>
                         </div>
                     ))}
