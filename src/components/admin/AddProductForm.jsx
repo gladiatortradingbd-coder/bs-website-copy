@@ -4,16 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, ImagePlus, LoaderCircle, X } from "lucide-react";
+import { HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 
 const MAX_PHOTOS = 4;
-const CATEGORY_OPTIONS = [
-  "Plants",
-  "Media",
-  "Air Plant Holders",
-  "Planters",
-  "Garden Accessories",
-];
-
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -71,12 +64,28 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
   );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState(() => HOMEPAGE_CATEGORY_CARDS.map((category) => category.title));
   const fileInputRef = useRef(null);
   const photoItemsRef = useRef(photoItems);
 
   useEffect(() => {
     photoItemsRef.current = photoItems;
   }, [photoItems]);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch("/api/category-images")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!ignore && Array.isArray(data.categories)) {
+          setCategoryOptions(data.categories.map((category) => category.title).filter(Boolean));
+        }
+      })
+      .catch(() => {});
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -290,7 +299,7 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
           className="h-14 rounded-2xl border border-border-color px-4 text-sm outline-none transition-all duration-300 focus:border-black dark:focus:border-white"
         >
           <option value="">Product category</option>
-          {CATEGORY_OPTIONS.map((option) => (
+          {categoryOptions.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>

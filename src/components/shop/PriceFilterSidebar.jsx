@@ -25,10 +25,25 @@ export default function PriceFilterSidebar() {
   const [priceLimit, setPriceLimit] = useState(() => searchParams.get("maxPrice") ?? String(DEFAULT_MAX_PRICE));
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false);
   const [mobilePanelMounted, setMobilePanelMounted] = useState(false);
+  const [categories, setCategories] = useState(MOBILE_CATEGORY_CHIPS);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch("/api/category-images")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!ignore && Array.isArray(data.categories)) {
+          setCategories([{ slug: "all", title: "All" }, ...data.categories]);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (mobilePanelOpen) {
-      setMobilePanelMounted(true);
       return undefined;
     }
 
@@ -150,7 +165,7 @@ export default function PriceFilterSidebar() {
                 <div>
                   <h6 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Categories</h6>
                   <div className="mt-3 flex flex-col gap-2">
-                    {MOBILE_CATEGORY_CHIPS.map((c) => {
+                    {categories.map((c) => {
                       const active = String(c.slug || "").toLowerCase() === String(currentCategory || "").toLowerCase();
 
                       return (
@@ -244,7 +259,7 @@ export default function PriceFilterSidebar() {
       <div className="hidden sm:block mt-4">
         <h6 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Categories</h6>
         <div className="mt-3 flex flex-col gap-2">
-          {MOBILE_CATEGORY_CHIPS.map((c) => {
+          {categories.map((c) => {
             const active = String(c.slug || "").toLowerCase() === String(currentCategory || "").toLowerCase();
 
             return (

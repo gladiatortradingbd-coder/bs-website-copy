@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/auth";
+import { getCategoryBySlug } from "@/lib/category-images";
 import { getCategoryFilterValues } from "@/lib/categories";
 import { uploadPhotoToCloudinary } from "@/lib/cloudinary";
 import clientPromise from "@/lib/mongodb";
@@ -78,7 +79,8 @@ export async function GET(request) {
 
   const andClauses = [];
 
-  const categoryValues = getCategoryFilterValues(category);
+  const dynamicCategory = category ? await getCategoryBySlug(category) : null;
+  const categoryValues = dynamicCategory ? [dynamicCategory.title] : getCategoryFilterValues(category);
 
   if (categoryValues.length > 0) {
     andClauses.push({

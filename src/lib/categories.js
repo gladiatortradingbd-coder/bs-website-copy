@@ -73,6 +73,18 @@ export const MOBILE_CATEGORY_CHIPS = [
   { slug: "air-plant-holders", ...CATEGORY_ALIASES["air-plant-holders"] },
 ];
 
+export function createCategorySlug(value) {
+  return normalizeCategoryValue(value).replace(/\s+/g, "-");
+}
+
+export function getFallbackCategory(slug) {
+  return HOMEPAGE_CATEGORY_CARDS.find((category) => category.slug === slug) ?? null;
+}
+
+export function getFallbackCategories() {
+  return HOMEPAGE_CATEGORY_CARDS;
+}
+
 function normalizeCategoryValue(value) {
   return String(value ?? "")
     .trim()
