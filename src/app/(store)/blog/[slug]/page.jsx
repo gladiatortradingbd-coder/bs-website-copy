@@ -45,12 +45,12 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Journal article not found | Aarong",
+      title: "Journal article not found | Elegance",
     };
   }
 
   return {
-    title: post.metaTitle || `${post.title} | Aarong`,
+    title: post.metaTitle || `${post.title} | Elegance`,
     description: post.metaDescription || post.excerpt,
     openGraph: {
       title: post.metaTitle || post.title,

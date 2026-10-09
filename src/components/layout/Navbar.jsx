@@ -166,7 +166,7 @@ export default function Navbar() {
               />
 
               <div className="flex flex-col leading-tight">
-                <div className="mx-auto text-[14px] font-bold tracking-widest">Aarong</div>
+                <div className="mx-auto text-[14px] font-bold tracking-widest">Elegance</div>
               </div>
             </Link>
 
@@ -228,7 +228,7 @@ export default function Navbar() {
                     className="rounded-full shadow-sm"
                   />
                   <div className="flex flex-col leading-tight">
-                    <div className="text-[16px] font-bold tracking-widest text-foreground">Aarong</div>
+                    <div className="text-[16px] font-bold tracking-widest text-foreground">Elegance</div>
                   </div>
                 </Link>
                 <button

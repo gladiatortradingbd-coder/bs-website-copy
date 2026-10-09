@@ -5,8 +5,8 @@ import { getPublishedBlogPosts } from "@/lib/blog";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Style Journal | Aarong",
-  description: "Saree styling ideas, fabric guides, care tips, and inspiration from Aarong.",
+  title: "Style Journal | Elegance",
+  description: "Saree styling ideas, fabric guides, care tips, and inspiration from Elegance.",
 };
 
 export default async function BlogPage() {

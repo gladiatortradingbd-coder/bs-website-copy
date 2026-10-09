@@ -6,39 +6,81 @@ import FadeIn from "@/components/ui/FadeIn"
 const posts = [
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1790953275/mariab-mprints_bevali.jpg",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Nureh_Marina_k2wfuw.jpg",
         likes: "126k",
         comments: "2.4k",
     },
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244848/photo-1466692476868-aef1dfb1e735_gbp9gb.jpg",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Sobia_Nazir_NUR_Festive_mzyg8x.jpg",
         likes: "140k",
         comments: "1.8k",
     },
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244791/Hibiscus_zvnoj1.png",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Rang_Rasiya_Meet_Me_In_wqwx5m.jpg",
         likes: "98k",
         comments: "3.1k",
     },
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244918/photo-1416879595882-3373a0480b5b_ysrvke.jpg",
-        likes: "220k",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Rajbari_Sage_Luxury_Formals_xpqtin.jpg",
+        likes: "280k",
+        comments: "1.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Jugnu_Karandi_AW26_vem9y7.jpg",
+        likes: "270k",
+        comments: "6.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/Maahi_Festive_Unstitched_26_kapv7e.jpg",
+        likes: "460k",
+        comments: "9.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/Izel_Musafir_Winter_26_djhgh9.jpg",
+        likes: "620k",
+        comments: "10.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/Jazmin_Chandni_Velvet_Formals_p9wavg.jpg",
+        likes: "520k",
         comments: "4.7k",
     },
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244815/MossForTerrarium_ox7tww.png",
-        likes: "220k",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/M_Prints_Winter_Vol_1_by_Maria_ctsabe.jpg",
+        likes: "120k",
+        comments: "3.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/Hussain_Rehar_Festive_gaiwse.jpg",
+        likes: "290k",
         comments: "5.7k",
     },
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244787/Crassula_Buddha_s_Temple_ix6kaj.png",
-        likes: "220k",
-        comments: "5.7k",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576653/Emaan_Adeel_Velvet_Affair_dixath.jpg",
+        likes: "250k",
+        comments: "4.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576652/Coco_Prints_Winter_2026_by_Blog_so2h8f.jpg",
+        likes: "20k",
+        comments: "1.7k",
+    },
+    {
+        image:
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576652/Charizma_Vasal_Winter_V_2_whclln.jpg",
+        likes: "230k",
+        comments: "2.7k",
     },
 ]
 

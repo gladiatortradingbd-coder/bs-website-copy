@@ -3,7 +3,7 @@ import AppProviders from "./providers";
 import SiteShell from "./SiteShell";
 
 export const metadata = {
-  title: "Aarong",
+  title: "Elegance",
   description: "Saree shop e-commerce website",
 };
 
