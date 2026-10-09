@@ -1,11 +1,14 @@
 import clientPromise from "@/lib/mongodb";
-import { HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
+import { createCategorySlug, HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 
 function mapStoredCategory(category, fallback) {
+  const storedTitle = String(category?.title ?? "").trim();
+  const title = storedTitle || fallback.title;
+
   return {
-    slug: fallback.slug,
-    title: String(category?.title ?? "").trim() || fallback.title,
-    href: fallback.href,
+    slug: storedTitle ? createCategorySlug(title) : fallback.slug,
+    title,
+    href: `/shop?category=${encodeURIComponent(storedTitle ? createCategorySlug(title) : fallback.slug)}`,
     image: category?.image || fallback.image,
     updatedAt: category?.updatedAt ?? null,
   };
@@ -16,12 +19,26 @@ export async function getHomepageCategoryCards() {
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
     const records = await collection.find({}).toArray();
-    const bySlug = new Map(records.map((record) => [String(record.slug ?? "").trim(), record]));
+    const bySlug = new Map();
+
+    records.forEach((record) => {
+      const slug = String(record.slug ?? "").trim();
+      const legacySlug = String(record.legacySlug ?? "").trim();
+
+      if (slug) {
+        bySlug.set(slug, record);
+      }
+
+      if (legacySlug) {
+        bySlug.set(legacySlug, record);
+      }
+    });
 
     const storedCategories = records
       .map((record) => {
         const slug = String(record.slug ?? "").trim();
-        const fallback = HOMEPAGE_CATEGORY_CARDS.find((item) => item.slug === slug);
+        const legacySlug = String(record.legacySlug ?? "").trim();
+        const fallback = HOMEPAGE_CATEGORY_CARDS.find((item) => item.slug === slug || item.slug === legacySlug);
 
         return fallback
           ? mapStoredCategory(record, fallback)
@@ -33,6 +50,7 @@ export async function getHomepageCategoryCards() {
               updatedAt: record.updatedAt ?? null,
             };
       })
+      .filter((category) => !records.some((record) => String(record.legacySlug ?? "").trim() === category.slug))
       .filter((category) => category.slug && category.title && category.image);
 
     const storedSlugs = new Set(storedCategories.map((category) => category.slug));
