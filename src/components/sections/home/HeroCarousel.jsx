@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import PlantSlider from "@/components/ui/Slider";
 import Button from "@/components/ui/Button";
-import FadeIn from "@/components/ui/FadeIn";
 import { DEFAULT_HERO_IMAGE } from "@/data/hero";
 
 const ROTATION_DELAY = 6000;
@@ -27,47 +26,72 @@ export default function HeroCarousel({ images }) {
     setActiveIndex((current) => (current + direction + imageList.length) % imageList.length);
   };
 
+  const pauseOnPress = (event) => {
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    setIsPaused(true);
+  };
+
+  const resumeOnRelease = (event) => {
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    setIsPaused(false);
+  };
+
   return (
     <section aria-label="Hero" className="flex justify-center px-3 sm:px-5">
       <div className="relative h-[36svh] w-full max-w-7xl overflow-hidden rounded-2xl bg-muted sm:h-[42svh] sm:rounded-3xl md:h-screen">
-        <div className="relative z-10 flex flex-col items-center gap-2 pb-4 pt-4 sm:gap-3 sm:pb-6 sm:pt-10 md:gap-5 md:pb-10 md:pt-20">
-          <FadeIn delay={100} direction="up">
-            <h1 className="text-center text-3xl font-bold leading-tight text-white sm:text-5xl md:text-7xl">Timeless Elegance in Every Drape</h1>
-          </FadeIn>
-          <FadeIn delay={250} direction="up">
-            <p className="max-w-[280px] text-center text-xs leading-normal text-white sm:max-w-lg sm:text-sm md:max-w-2xl md:text-lg">
-              Exquisite handwoven sarees, luxurious silks, and curated ethnic wear — crafted with tradition, delivered to your door across Bangladesh.
-            </p>
-          </FadeIn>
-          <FadeIn delay={400} direction="up">
-            <Button href="/shop" variant="primary" size="sm" className="btn-shimmer sm:h-12 sm:px-5 sm:text-sm md:h-14 md:px-8">Shop now</Button>
-          </FadeIn>
-        </div>
-
         <div className="absolute inset-0">
-          {imageList.map((image, index) => (
-            <Image
-              key={`${image}-${index}`}
-              src={image}
-              alt={`Hero image ${index + 1}`}
-              fill
-              priority={index === 0}
-              className={`object-cover object-bottom transition-opacity duration-700 ${index === activeIndex ? "opacity-100" : "opacity-0"}`}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
-            />
-          ))}
+          <a
+            href="https://bs-website-copy.vercel.app/shop"
+            className="absolute inset-0"
+            onPointerDown={pauseOnPress}
+            onPointerUp={resumeOnRelease}
+            onPointerCancel={resumeOnRelease}
+            onPointerLeave={resumeOnRelease}
+            aria-label="Shop our collection"
+          >
+            {imageList.map((image, index) => (
+              <Image
+                key={`${image}-${index}`}
+                src={image}
+                alt={`Hero image ${index + 1}`}
+                fill
+                priority={index === 0}
+                className={`object-cover object-bottom transition-opacity duration-700 ${index === activeIndex ? "opacity-100" : "opacity-0"}`}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+              />
+            ))}
+          </a>
 
           {imageList.length > 1 ? (
-            <div className="absolute bottom-14 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/45 px-3 py-2 backdrop-blur-sm sm:bottom-16">
-              <Button type="button" variant="soft" size="icon" className="h-8 w-8" onClick={() => changeImage(-1)} aria-label="Previous hero image"><ChevronLeft className="h-4 w-4" /></Button>
-              <Button type="button" variant="soft" size="icon" className="h-8 w-8" onClick={() => setIsPaused((current) => !current)} aria-label={isPaused ? "Resume hero rotation" : "Pause hero rotation"}>{isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}</Button>
-              <Button type="button" variant="soft" size="icon" className="h-8 w-8" onClick={() => changeImage(1)} aria-label="Next hero image"><ChevronRight className="h-4 w-4" /></Button>
-              <div className="ml-1 flex items-center gap-1.5" role="tablist" aria-label="Hero images">
+            <>
+              <Button
+                type="button"
+                variant="soft"
+                size="icon"
+                className="absolute left-3 top-1/2 z-30 h-11 w-11 -translate-y-1/2 border-white/30 bg-black/35 shadow-lg backdrop-blur-md hover:scale-110 hover:bg-black/55 sm:left-5 sm:h-12 sm:w-12"
+                onClick={() => changeImage(-1)}
+                aria-label="Previous hero image"
+              >
+                <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+              </Button>
+              <Button
+                type="button"
+                variant="soft"
+                size="icon"
+                className="absolute right-3 top-1/2 z-30 h-11 w-11 -translate-y-1/2 border-white/30 bg-black/35 shadow-lg backdrop-blur-md hover:scale-110 hover:bg-black/55 sm:right-5 sm:h-12 sm:w-12"
+                onClick={() => changeImage(1)}
+                aria-label="Next hero image"
+              >
+                <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+              </Button>
+              <div className="absolute bottom-14 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/40 px-3 py-2 backdrop-blur-md sm:bottom-16">
                 {imageList.map((image, index) => (
                   <button key={`${image}-dot-${index}`} type="button" onClick={() => setActiveIndex(index)} className={`h-1.5 rounded-full transition-all ${index === activeIndex ? "w-5 bg-white" : "w-1.5 bg-white/60"}`} aria-label={`Show hero image ${index + 1}`} aria-selected={index === activeIndex} role="tab" />
                 ))}
               </div>
-            </div>
+            </>
           ) : null}
           <div className="absolute bottom-0 left-0 z-20 w-full"><PlantSlider /></div>
         </div>
