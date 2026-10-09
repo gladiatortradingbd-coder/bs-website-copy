@@ -129,8 +129,13 @@ export async function POST(request) {
     const fallback = getFallbackCategory(requestedSlug) ?? getFallbackCategory(slug);
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
-    const existingCategory = await collection.findOne({
-      $or: [{ slug: requestedSlug || slug }, { legacySlug: requestedSlug || slug }],
+    const records = await collection.find({}).toArray();
+    const existingCategory = records.find((record) => {
+      const recordSlug = normalizeSlug(record.slug);
+      const legacySlug = normalizeSlug(record.legacySlug);
+      const titleSlug = createCategorySlug(record.title);
+
+      return [recordSlug, legacySlug, titleSlug].includes(requestedSlug || slug);
     });
     const isNewCategory = !existingCategory && !fallback;
     if (isNewCategory && !photo) {
@@ -209,10 +214,18 @@ export async function DELETE(request) {
 
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
-    const existingCategory = await collection.findOne({
-      $or: [{ slug }, { legacySlug: slug }],
+    const records = await collection.find({}).toArray();
+    const existingCategory = records.find((record) => {
+      const recordSlug = normalizeSlug(record.slug);
+      const legacySlug = normalizeSlug(record.legacySlug);
+      const titleSlug = createCategorySlug(record.title);
+
+      return [recordSlug, legacySlug, titleSlug].includes(slug);
     });
-    const fallback = getFallbackCategory(slug);
+    const fallback =
+      getFallbackCategory(slug) ??
+      getFallbackCategory(existingCategory?.slug) ??
+      getFallbackCategory(existingCategory?.legacySlug);
     const fallbackCategory = fallback ?? getFallbackCategory(existingCategory?.legacySlug);
 
     if (!existingCategory && !fallback) {

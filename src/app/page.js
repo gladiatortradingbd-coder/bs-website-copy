@@ -9,7 +9,7 @@ const TestimonialMarquee = dynamic(() => import("@/components/sections/home/Test
 const InstagramMarquee = dynamic(() => import("@/components/sections/home/InstagramMarquee"));
 const PlantCareSection = dynamic(() => import("@/components/sections/home/PlantCareSection"));
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export default async function Home() {
   const heroImages = await getHeroImages();
