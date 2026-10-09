@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getHomepageCategoryCards } from "@/lib/category-images";
+import { getFallbackCategory } from "@/lib/categories";
 import HomepageCategoryCarousel from "./HomepageCategoryCarousel";
 
 export default async function CategoriesSection() {
   const categoryCards = await getHomepageCategoryCards();
   const items = categoryCards.map((category) => ({
     src: category.image,
+    fallbackSrc: getFallbackCategory(category.slug)?.image,
     alt: category.title,
     title: category.title,
     href: category.href,

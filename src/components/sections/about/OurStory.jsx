@@ -87,7 +87,7 @@ export default function OurStorySection() {
                 bg-muted
               "
             >
-              <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245425/OurStoryImage_oouc5e.png" alt="Our Story" width={900} height={900} className="h-56 w-full object-cover sm:h-155" />
+              <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576652/Coco_Prints_Winter_2026_by_Blog_so2h8f.jpg" alt="Our Story" width={900} height={900} className="h-56 w-full object-cover sm:h-155" />
             </div>
 
             {/* Floating Card */}

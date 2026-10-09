@@ -83,7 +83,7 @@ export default function CommitmentSection() {
                             {/* Overlay */}
                             <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-r from-black/20 via-transparent to-transparent" />
 
-                            <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245842/photo-1512428813834-c702c7702b78_u9r7yv.jpg" alt="Elegant saree collection" fill className="object-cover" />
+                            <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576654/Nureh_Marina_k2wfuw.jpg" alt="Elegant saree collection" fill className="object-cover" />
 
                             {/* Floating Card */}
                             <div

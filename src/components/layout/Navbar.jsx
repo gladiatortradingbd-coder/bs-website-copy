@@ -14,6 +14,8 @@ import WishlistLink from "@/components/ui/WishlistLink";
 import UserMenu from "@/components/layout/UserMenu";
 import { useCart } from "@/context/CartContext";
 
+const LOGO_SRC = "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791582557/logo_bgxxa4.png";
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#categories", label: "Category" },
@@ -77,7 +79,7 @@ export default function Navbar() {
           <div className="mt-4 flex items-center gap-3">
             <Link href="/" className="flex shrink-0 items-center gap-2">
               <Image
-                src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246876/logo3_n16yjz.png"
+                src={LOGO_SRC}
                 width={44}
                 height={44}
                 alt="Logo"
@@ -158,7 +160,7 @@ export default function Navbar() {
           <div className="flex items-center gap-10">
             <Link href="/" className="flex shrink-0 cursor-pointer items-center gap-3">
               <Image
-                src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246876/logo3_n16yjz.png"
+                src={LOGO_SRC}
                 width={65}
                 height={65}
                 alt="Logo"
@@ -221,7 +223,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between mb-2">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
                   <Image
-                    src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246876/logo3_n16yjz.png"
+                    src={LOGO_SRC}
                     width={48}
                     height={48}
                     alt="Logo"
