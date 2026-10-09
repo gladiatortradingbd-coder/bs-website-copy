@@ -33,8 +33,8 @@ const TAB_META = {
     description: "Review and manage incoming orders.",
   },
   category: {
-    title: "Category images",
-    description: "Update homepage category visuals.",
+    title: "Category content",
+    description: "Update homepage category images and titles.",
   },
   hero: {
     title: "Hero images",

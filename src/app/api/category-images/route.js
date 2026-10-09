@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getAuthSession } from "@/auth";
 import { uploadPhotoToCloudinary } from "@/lib/cloudinary";
 import clientPromise from "@/lib/mongodb";
@@ -53,7 +54,8 @@ export async function POST(request) {
     const formData = await request.formData();
     const slug = normalizeSlug(formData.get("slug"));
     const title = String(formData.get("title") ?? "").trim();
-    const photo = String(formData.get("photo") ?? "").trim();
+    const photoValue = formData.get("photo");
+    const photo = typeof photoValue === "string" ? photoValue.trim() : "";
 
     if (!slug) {
       return NextResponse.json({ message: "Category slug is required." }, { status: 400 });
@@ -65,13 +67,16 @@ export async function POST(request) {
       return NextResponse.json({ message: "Unknown category." }, { status: 400 });
     }
 
-    if (!photo) {
-      return NextResponse.json({ message: "Please choose a category image." }, { status: 400 });
+    if (title.length > 80) {
+      return NextResponse.json({ message: "Category title must be 80 characters or fewer." }, { status: 400 });
     }
 
-    const uploadedImage = await uploadPhotoToCloudinary(photo);
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
+    const existingCategory = await collection.findOne({ slug });
+    const uploadedImage = photo
+      ? await uploadPhotoToCloudinary(photo)
+      : String(existingCategory?.image ?? category.image).trim();
     const now = new Date();
 
     await collection.updateOne(
@@ -89,6 +94,8 @@ export async function POST(request) {
       },
       { upsert: true },
     );
+
+    revalidatePath("/", "page");
 
     return NextResponse.json({
       message: "Category image updated successfully.",

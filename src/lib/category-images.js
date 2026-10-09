@@ -4,7 +4,7 @@ import { HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 function mapStoredCategory(category, fallback) {
   return {
     slug: fallback.slug,
-    title: fallback.title,
+    title: String(category?.title ?? "").trim() || fallback.title,
     href: fallback.href,
     image: category?.image || fallback.image,
     updatedAt: category?.updatedAt ?? null,
