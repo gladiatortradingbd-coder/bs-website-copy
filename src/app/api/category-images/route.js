@@ -30,6 +30,10 @@ export async function GET() {
     const storedBySlug = new Map();
 
     records.forEach((record) => {
+      if (record.deleted) {
+        return;
+      }
+
       const slug = String(record.slug ?? "").trim();
       const legacySlug = String(record.legacySlug ?? "").trim();
 
@@ -41,17 +45,26 @@ export async function GET() {
         storedBySlug.set(legacySlug, record);
       }
     });
-    const categories = HOMEPAGE_CATEGORY_CARDS.map((fallback) => ({
-      slug: storedBySlug.get(fallback.slug)?.title
-        ? createCategorySlug(String(storedBySlug.get(fallback.slug).title).trim())
-        : fallback.slug,
-      title: String(storedBySlug.get(fallback.slug)?.title ?? fallback.title).trim(),
-      image: String(storedBySlug.get(fallback.slug)?.image ?? fallback.image).trim(),
-      href: `/shop?category=${encodeURIComponent(storedBySlug.get(fallback.slug)?.title
-        ? createCategorySlug(String(storedBySlug.get(fallback.slug).title).trim())
-        : fallback.slug)}`,
-      updatedAt: storedBySlug.get(fallback.slug)?.updatedAt ?? null,
-    }));
+    const deletedFallbackSlugs = new Set(
+      records
+        .filter((record) => record.deleted)
+        .flatMap((record) => [record.slug, record.legacySlug])
+        .map((slug) => String(slug ?? "").trim())
+        .filter(Boolean),
+    );
+    const categories = HOMEPAGE_CATEGORY_CARDS
+      .filter((fallback) => !deletedFallbackSlugs.has(fallback.slug))
+      .map((fallback) => ({
+        slug: storedBySlug.get(fallback.slug)?.title
+          ? createCategorySlug(String(storedBySlug.get(fallback.slug).title).trim())
+          : fallback.slug,
+        title: String(storedBySlug.get(fallback.slug)?.title ?? fallback.title).trim(),
+        image: String(storedBySlug.get(fallback.slug)?.image ?? fallback.image).trim(),
+        href: `/shop?category=${encodeURIComponent(storedBySlug.get(fallback.slug)?.title
+          ? createCategorySlug(String(storedBySlug.get(fallback.slug).title).trim())
+          : fallback.slug)}`,
+        updatedAt: storedBySlug.get(fallback.slug)?.updatedAt ?? null,
+      }));
     const defaultSlugs = new Set(HOMEPAGE_CATEGORY_CARDS.map((category) => category.slug));
 
     for (const record of records) {
@@ -59,7 +72,7 @@ export async function GET() {
       const title = String(record.title ?? "").trim();
       const image = String(record.image ?? "").trim();
 
-      if (slug && title && image && !defaultSlugs.has(slug) && !record.legacySlug) {
+      if (slug && title && image && !defaultSlugs.has(slug) && !record.legacySlug && !record.deleted) {
         categories.push({
           slug,
           title,
@@ -116,7 +129,9 @@ export async function POST(request) {
     const fallback = getFallbackCategory(requestedSlug) ?? getFallbackCategory(slug);
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
-    const existingCategory = await collection.findOne({ slug: requestedSlug || slug });
+    const existingCategory = await collection.findOne({
+      $or: [{ slug: requestedSlug || slug }, { legacySlug: requestedSlug || slug }],
+    });
     const isNewCategory = !existingCategory && !fallback;
     if (isNewCategory && !photo) {
       return NextResponse.json({ message: "Please choose an image for the new category." }, { status: 400 });
@@ -136,6 +151,9 @@ export async function POST(request) {
         image: uploadedImage,
         updatedAt: now,
       },
+      $unset: {
+        deleted: "",
+      },
       $setOnInsert: {
         createdAt: now,
       },
@@ -146,7 +164,9 @@ export async function POST(request) {
     }
 
     await collection.updateOne(
-      { slug: requestedSlug || slug },
+      existingCategory?._id
+        ? { _id: existingCategory._id }
+        : { slug: requestedSlug || slug },
       update,
       { upsert: true },
     );
@@ -189,23 +209,46 @@ export async function DELETE(request) {
 
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
-    const existingCategory = await collection.findOne({ slug });
-    if (!existingCategory) {
+    const existingCategory = await collection.findOne({
+      $or: [{ slug }, { legacySlug: slug }],
+    });
+    const fallback = getFallbackCategory(slug);
+    const fallbackCategory = fallback ?? getFallbackCategory(existingCategory?.legacySlug);
+
+    if (!existingCategory && !fallback) {
       return NextResponse.json({ message: "Category not found." }, { status: 404 });
     }
 
-    const fallback = getFallbackCategory(slug) ?? getFallbackCategory(existingCategory.legacySlug);
-    await collection.deleteOne({ slug });
-    if (existingCategory.image && existingCategory.image !== fallback?.image) {
-      await deletePhotoFromCloudinary(existingCategory.image);
+    if (fallbackCategory) {
+      await collection.updateOne(
+        existingCategory?._id ? { _id: existingCategory._id } : { slug },
+        {
+          $set: {
+            slug: existingCategory?.slug ?? slug,
+            title: existingCategory?.title ?? fallbackCategory.title,
+            image: existingCategory?.image ?? fallbackCategory.image,
+            deleted: true,
+            updatedAt: new Date(),
+          },
+          $setOnInsert: {
+            createdAt: new Date(),
+          },
+        },
+        { upsert: true },
+      );
+    } else {
+      await collection.deleteOne({ _id: existingCategory._id });
+      if (existingCategory.image) {
+        await deletePhotoFromCloudinary(existingCategory.image);
+      }
     }
     revalidatePath("/", "page");
     revalidatePath("/shop", "page");
     revalidatePath("/api/category-images");
 
     return NextResponse.json({
-      message: fallback ? "Category changes reset successfully." : "Category deleted successfully.",
-      category: fallback ?? null,
+      message: "Category deleted successfully.",
+      category: null,
     });
   } catch (error) {
     return NextResponse.json(

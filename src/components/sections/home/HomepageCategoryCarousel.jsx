@@ -14,6 +14,7 @@ export default function HomepageCategoryCarousel({ items }) {
       radius={22}
       squeeze={0.18}
       focusOnClick
+      captureWheel={false}
       captions
       onSelect={(_, item) => {
         if (item?.href) {

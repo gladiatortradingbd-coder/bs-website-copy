@@ -22,6 +22,10 @@ export async function getHomepageCategoryCards() {
     const bySlug = new Map();
 
     records.forEach((record) => {
+      if (record.deleted) {
+        return;
+      }
+
       const slug = String(record.slug ?? "").trim();
       const legacySlug = String(record.legacySlug ?? "").trim();
 
@@ -34,7 +38,15 @@ export async function getHomepageCategoryCards() {
       }
     });
 
+    const deletedFallbackSlugs = new Set(
+      records
+        .filter((record) => record.deleted)
+        .flatMap((record) => [record.slug, record.legacySlug])
+        .map((slug) => String(slug ?? "").trim())
+        .filter(Boolean),
+    );
     const storedCategories = records
+      .filter((record) => !record.deleted)
       .map((record) => {
         const slug = String(record.slug ?? "").trim();
         const legacySlug = String(record.legacySlug ?? "").trim();
@@ -55,7 +67,7 @@ export async function getHomepageCategoryCards() {
 
     const storedSlugs = new Set(storedCategories.map((category) => category.slug));
     const defaults = HOMEPAGE_CATEGORY_CARDS
-      .filter((fallback) => !storedSlugs.has(fallback.slug))
+      .filter((fallback) => !storedSlugs.has(fallback.slug) && !deletedFallbackSlugs.has(fallback.slug))
       .map((fallback) => mapStoredCategory(null, fallback));
 
     return [...defaults, ...storedCategories];
