@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, ImagePlus, LoaderCircle, X } from "lucide-react";
-import { HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
@@ -63,7 +62,7 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
   );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [categoryOptions, setCategoryOptions] = useState(() => HOMEPAGE_CATEGORY_CARDS.map((category) => category.title));
+  const [categoryOptions, setCategoryOptions] = useState([]);
   const fileInputRef = useRef(null);
   const photoItemsRef = useRef(photoItems);
 

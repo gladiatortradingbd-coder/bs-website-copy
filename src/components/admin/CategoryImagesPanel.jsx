@@ -298,8 +298,6 @@ export default function CategoryImagesPanel() {
           const isSaving = savingSlug === category.slug;
           const hasPendingFile = Boolean(selectedFiles[category.slug]);
           const hasChanges = hasPendingFile || title.trim() !== category.title;
-          const isDefault = !category.updatedAt && ["plants", "soil", "planters", "garden-accessories", "air-plant-holders"].includes(category.slug);
-
           return (
             <div key={category.slug} className="overflow-hidden rounded-[24px] border border-border-color bg-muted">
               <div className="relative aspect-[4/3] bg-muted">
@@ -356,12 +354,10 @@ export default function CategoryImagesPanel() {
                     {isSaving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
                     Save changes
                   </Button>
-                  {!isDefault ? (
-                    <Button type="button" variant="ghost" className="rounded-xl px-3 text-red-700" onClick={() => handleDelete(category.slug, title)} disabled={isSaving}>
-                      <Trash2 className="h-4 w-4" />
-                      <span className="sr-only">Delete {title}</span>
-                    </Button>
-                  ) : null}
+                  <Button type="button" variant="ghost" className="rounded-xl px-3 text-red-700" onClick={() => handleDelete(category.slug, title)} disabled={isSaving}>
+                    <Trash2 className="h-4 w-4" />
+                    <span className="sr-only">Delete {title}</span>
+                  </Button>
                 </div>
               </div>
             </div>
