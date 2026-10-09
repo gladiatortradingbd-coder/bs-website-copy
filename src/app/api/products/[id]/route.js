@@ -111,10 +111,6 @@ export async function PATCH(request, { params }) {
       return NextResponse.json({ message: "Stock must be a whole number greater than or equal to 0." }, { status: 400 });
     }
 
-    if (photos.length > 4) {
-      return NextResponse.json({ message: "You can upload up to 4 product photos." }, { status: 400 });
-    }
-
     const client = await clientPromise;
     const db = client.db();
     const collection = db.collection("products");

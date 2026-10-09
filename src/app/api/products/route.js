@@ -185,10 +185,6 @@ export async function POST(request) {
       return NextResponse.json({ message: "Please add at least one product photo." }, { status: 400 });
     }
 
-    if (photos.length > 4) {
-      return NextResponse.json({ message: "You can upload up to 4 product photos." }, { status: 400 });
-    }
-
     const uploadedPhotos = await Promise.all(photos.map((photo) => uploadPhotoToCloudinary(photo)));
 
     const client = await clientPromise;

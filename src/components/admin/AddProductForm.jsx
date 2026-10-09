@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, ImagePlus, LoaderCircle, X } from "lucide-react";
 import { HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 
-const MAX_PHOTOS = 4;
 function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -102,12 +101,6 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
     const files = Array.from(event.target.files ?? []);
 
     if (!files.length) {
-      return;
-    }
-
-    if (photoItemsRef.current.length + files.length > MAX_PHOTOS) {
-      setMessage(`You can keep up to ${MAX_PHOTOS} photos in total.`);
-      event.target.value = "";
       return;
     }
 
@@ -215,10 +208,6 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
 
       if (!photoItemsRef.current.length) {
         throw new Error("Please select at least one photo.");
-      }
-
-      if (photoItemsRef.current.length > MAX_PHOTOS) {
-        throw new Error(`You can upload up to ${MAX_PHOTOS} photos.`);
       }
 
       const payload = new FormData();
@@ -388,7 +377,7 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-medium text-foreground">Product photos</p>
-            <p className="text-xs text-muted-foreground">Select up to {MAX_PHOTOS} images, then reorder or remove each one.</p>
+            <p className="text-xs text-muted-foreground">Select as many images as you need, then reorder or remove each one.</p>
           </div>
 
           {photoItems.length > 0 && (

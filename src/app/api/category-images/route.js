@@ -161,10 +161,6 @@ export async function DELETE(request) {
       return NextResponse.json({ message: "Category slug is required." }, { status: 400 });
     }
 
-    if (getFallbackCategory(slug)) {
-      return NextResponse.json({ message: "Default categories cannot be deleted." }, { status: 400 });
-    }
-
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
     const existingCategory = await collection.findOne({ slug });
@@ -172,15 +168,19 @@ export async function DELETE(request) {
       return NextResponse.json({ message: "Category not found." }, { status: 404 });
     }
 
+    const fallback = getFallbackCategory(slug);
     await collection.deleteOne({ slug });
-    if (existingCategory.image) {
+    if (existingCategory.image && existingCategory.image !== fallback?.image) {
       await deletePhotoFromCloudinary(existingCategory.image);
     }
     revalidatePath("/", "page");
     revalidatePath("/shop", "page");
     revalidatePath("/api/category-images");
 
-    return NextResponse.json({ message: "Category deleted successfully." });
+    return NextResponse.json({
+      message: fallback ? "Category changes reset successfully." : "Category deleted successfully.",
+      category: fallback ?? null,
+    });
   } catch (error) {
     return NextResponse.json(
       { message: error instanceof Error ? error.message : "Could not delete category." },

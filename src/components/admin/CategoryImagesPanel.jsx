@@ -116,8 +116,32 @@ export default function CategoryImagesPanel() {
       const response = await fetch(`/api/category-images?slug=${encodeURIComponent(slug)}`, { method: "DELETE" });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Could not delete category.");
-      setCategories((current) => current.filter((category) => category.slug !== slug));
-      setMessage(`${title} category deleted.`);
+      setCategories((current) => {
+        if (!data.category) {
+          return current.filter((category) => category.slug !== slug);
+        }
+
+        return current.map((category) => (category.slug === slug ? data.category : category));
+      });
+      setEditedTitles((current) => {
+        const next = { ...current };
+        delete next[slug];
+        return next;
+      });
+      setSelectedFiles((current) => {
+        const next = { ...current };
+        delete next[slug];
+        return next;
+      });
+      setPreviewUrls((current) => {
+        const next = { ...current };
+        if (next[slug]) {
+          URL.revokeObjectURL(next[slug]);
+        }
+        delete next[slug];
+        return next;
+      });
+      setMessage(data.category ? `${title} category reset.` : `${title} category deleted.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not delete category.");
     } finally {
