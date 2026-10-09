@@ -2,9 +2,9 @@ const BLOG_STATUS_OPTIONS = ["draft", "published"];
 
 const BLOG_CATEGORY_SUGGESTIONS = [
   "Care Guides",
-  "Plant Styling",
+  "Saree Styling",
   "Seasonal Tips",
-  "Plant Health",
+  "Saree Care",
   "News",
   "Resources",
 ];

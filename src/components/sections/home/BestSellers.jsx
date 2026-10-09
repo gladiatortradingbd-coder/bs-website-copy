@@ -11,64 +11,64 @@ import SearchBar from "@/components/ui/SearchBar";
 const products = [
     {
         id: 1,
-        name: "Moon Cactus",
-        category: "Cactus",
+        name: "Katan Silk Saree",
+        category: "Silk Sarees",
         price: "Tk 12",
         image:
             "https://images.unsplash.com/photo-1459156212016-c812468e2115?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 2,
-        name: "Snake Plant",
-        category: "Indoor",
+        name: "Handloom Cotton Saree",
+        category: "Cotton Sarees",
         price: "Tk 18",
         image:
             "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 3,
-        name: "Echeveria",
-        category: "Succulent",
+        name: "Classic Jamdani Saree",
+        category: "Jamdani Sarees",
         price: "Tk 10",
         image:
             "https://images.unsplash.com/photo-1512428813834-c702c7702b78?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 4,
-        name: "Aloe Vera",
-        category: "Medicinal",
+        name: "Traditional Tant Saree",
+        category: "Tant Sarees",
         price: "Tk 15",
         image:
             "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 5,
-        name: "Monstera",
-        category: "Tropical",
+        name: "Banarasi Wedding Saree",
+        category: "Banarasi Sarees",
         price: "Tk 24",
         image:
             "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 6,
-        name: "Jade Plant",
-        category: "Succulent",
+        name: "Embroidered Silk Saree",
+        category: "Silk Sarees",
         price: "Tk 14",
         image:
             "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 7,
-        name: "Rubber Plant",
-        category: "Indoor",
+        name: "Soft Cotton Saree",
+        category: "Cotton Sarees",
         price: "Tk 22",
         image:
             "https://images.unsplash.com/photo-1463154545680-d59320fd685d?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 8,
-        name: "Peace Lily",
-        category: "Flowering",
+        name: "Festive Jamdani Saree",
+        category: "Jamdani Sarees",
         price: "Tk 19",
         image:
             "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=1200&auto=format&fit=crop",
@@ -122,7 +122,7 @@ export default async function BestSellers() {
                         </p>
 
                         <h2 className="text-[1.05rem] font-semibold leading-tight text-foreground sm:max-w-md sm:text-2xl md:max-w-2xl md:text-5xl">
-                            Best selling plants for modern spaces
+                            Best-selling sarees for every occasion
                         </h2>
                     </div>
                     </FadeIn>
@@ -133,7 +133,7 @@ export default async function BestSellers() {
                         {/* SEARCH */}
                         <Suspense fallback={null}>
                             <SearchBar
-                                placeholder="Search plants..."
+                                placeholder="Search sarees..."
                                 className="w-full md:w-65"
                                 submitHref="/shop"
                                 filterHref="/shop"

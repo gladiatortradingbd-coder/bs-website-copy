@@ -197,13 +197,7 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
         throw new Error("Please enter a valid stock count.");
       }
 
-      const isMediaCategory = form.category.trim().toLowerCase() === "media";
       const rawWeight = String(form.weight ?? "").trim();
-      const parsedWeight = rawWeight === "" ? null : Number(rawWeight);
-
-      if (isMediaCategory && rawWeight !== "" && (!Number.isFinite(parsedWeight) || parsedWeight <= 0)) {
-        throw new Error("Please enter a valid weight in kg for Media products.");
-      }
 
       if (!photoItemsRef.current.length) {
         throw new Error("Please select at least one photo.");
@@ -313,26 +307,6 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
           placeholder="Stock quantity"
           className="h-14 rounded-2xl border border-border-color px-4 text-sm outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-black dark:focus:border-white"
         />
-        {form.category === "Media" && (
-          <div className="md:col-span-2">
-            <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
-              Weight per unit (kg) — used to calculate delivery surcharge
-            </label>
-            <input
-              name="weight"
-              type="number"
-              min="0.1"
-              step="0.1"
-              value={form.weight}
-              onChange={handleChange}
-              placeholder="e.g. 2.5"
-              className="h-14 w-full rounded-2xl border border-border-color px-4 text-sm outline-none transition-all duration-300 placeholder:text-neutral-400 focus:border-black dark:focus:border-white"
-            />
-            <p className="mt-1 text-xs text-muted-foreground">
-              First 1 kg is free. Each extra whole kg adds ৳20 to delivery.
-            </p>
-          </div>
-        )}
         <textarea
           name="description"
           value={form.description}

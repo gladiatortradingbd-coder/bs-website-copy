@@ -1,28 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Leaf } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 
 const articles = [
   {
     id: 1,
-    title: "5 mistakes that slowly damage indoor plants",
-    category: "Plant Care",
+    title: "How to style a saree for every occasion",
+    category: "Style Guide",
     date: "May 10, 2026",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244848/photo-1466692476868-aef1dfb1e735_gbp9gb.jpg",
   },
   {
     id: 2,
-    title: "How to water succulents properly in hot weather",
-    category: "Succulent Guide",
+    title: "A guide to caring for your favourite sarees",
+    category: "Saree Care",
     date: "May 08, 2026",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245134/photo-1459156212016-c812468e2115_arngzp.jpg",
   },
 ];
 
-export default function PlantCare() {
+export default function StyleGuides() {
   return (
     <section className="px-4 py-12 sm:py-24 md:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -33,28 +33,28 @@ export default function PlantCare() {
           {/* SMALL BADGE */}
           <FadeIn direction="up">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border-color bg-background px-3 py-1 text-xs font-medium text-foreground sm:px-4 sm:py-2 sm:text-sm">
-            <Leaf size={15} />
-            Plant Care Guides
+            <Sparkles size={15} />
+            Saree Style Guides
           </div>
           </FadeIn>
 
           {/* TITLE */}
           <FadeIn direction="up" delay={150}>
-          <h2 className="text-2xl font-semibold leading-tight text-foreground sm:text-3xl md:text-5xl">Learn how to care for your plants properly</h2>
+          <h2 className="text-2xl font-semibold leading-tight text-foreground sm:text-3xl md:text-5xl">Discover new ways to wear and care for your sarees</h2>
           </FadeIn>
 
           {/* DESCRIPTION */}
           <FadeIn direction="up" delay={300}>
           <div className="mx-auto mt-4 max-w-2xl">
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Expert plant care tips, watering guides, styling ideas, and maintenance advice to help your plants thrive beautifully.
+              Explore styling inspiration, fabric guides, draping ideas, and care advice to keep every saree looking beautiful.
             </p>
           </div>
           </FadeIn>
         </header>
 
         {/* ARTICLES */}
-        <ul className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2" aria-label="Plant care articles">
+        <ul className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2" aria-label="Saree style articles">
           {articles.map((article) => (
             <li key={article.id}>
               <article
@@ -136,7 +136,7 @@ export default function PlantCare() {
         </ul>
 
         {/* BUTTON */}
-        <nav className="mt-14 flex justify-center" aria-label="Plant care actions">
+        <nav className="mt-14 flex justify-center" aria-label="Style guide actions">
           <Link
             href="/blog"
             className="

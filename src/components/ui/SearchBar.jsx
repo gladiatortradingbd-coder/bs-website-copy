@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function SearchBar({
-  placeholder = "Search plants...",
+  placeholder = "Search sarees...",
   className = "",
   inputClassName = "",
   compact = false,

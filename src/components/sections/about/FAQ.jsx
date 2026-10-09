@@ -14,8 +14,8 @@ const faqData = {
       a: "Most inquiries are answered within 24 hours. Complex cases may take slightly longer.",
     },
     {
-      q: "Do you offer plant care advice?",
-      a: "Yes, we provide detailed plant care guides and personalized recommendations for customers.",
+      q: "Can you help me choose a saree?",
+      a: "Yes, our team can help you choose a saree based on the occasion, fabric, colour, and style you prefer.",
     },
     {
       q: "Do you ship internationally?",
@@ -28,8 +28,8 @@ const faqData = {
       a: "We prioritize all company-related queries within standard support hours.",
     },
     {
-      q: "Do you offer plant care advice?",
-      a: "Yes, our experts are available to guide you on proper plant maintenance.",
+      q: "How do I care for my saree?",
+      a: "Care instructions vary by fabric. We share practical guidance with your order so your saree stays beautiful for years.",
     },
   ],
   Delivery: [

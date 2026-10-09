@@ -45,13 +45,13 @@ export default function Footer() {
               <span className="text-2xl font-bold tracking-wider">{footer.companyName}</span>
             </div>
             <p className="opacity-80 leading-relaxed">
-              You will find best collection of cactus, Hawarthia and Succulent at best price range.
+              Discover timeless sarees, thoughtful craftsmanship, and elegant styles made for every occasion.
             </p>
           </div>
 
           {/* Column 2: Office Info */}
           <address className="not-italic">
-            <h4 className="relative text-lg font-semibold mb-4 pb-2 inline-block">Office<div className='overflow-hidden mt-2 relative h-1.5 w-full rounded-[3px] bg-[#767676]'><span className='absolute top-0 left-2.5 h-full w-3.75 rounded-[3px] bg-background animate-moving'></span></div></h4>
+            <h4 className="relative text-lg font-semibold mb-4 pb-2 inline-block">Visit us<div className='overflow-hidden mt-2 relative h-1.5 w-full rounded-[3px] bg-[#767676]'><span className='absolute top-0 left-2.5 h-full w-3.75 rounded-[3px] bg-background animate-moving'></span></div></h4>
             <div className="space-y-2 opacity-80">
               {footer.office.address.map((line, i) => (
                 <div key={i}>{line}</div>
@@ -89,7 +89,7 @@ export default function Footer() {
           {/* Column 4: Newsletter & Social */}
           <div>
             <h4 className="relative text-lg font-semibold mb-4 pb-2 inline-block">Newsletter<div className='overflow-hidden mt-2 relative h-1.25 w-full rounded-[3px] bg-[#767676]'><span className='absolute top-0 left-2.5 h-full w-3.75 rounded-[3px] bg-background animate-moving'></span></div></h4>
-            <p className="opacity-80 mb-4">Stay updated with our latest news.</p>
+            <p className="opacity-80 mb-4">Get styling inspiration and updates from our latest collection.</p>
             <form className="mb-4" onSubmit={(e) => e.preventDefault()} aria-label="Subscribe to newsletter">
               <label className="sr-only">Email</label>
               <div className="flex gap-2">

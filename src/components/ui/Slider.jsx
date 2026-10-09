@@ -1,4 +1,4 @@
-export default function PlantSlider() {
+export default function CategorySlider() {
     const categories = [
         "Silk Sarees",
         "Cotton Sarees",

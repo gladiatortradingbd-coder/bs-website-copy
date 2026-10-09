@@ -94,7 +94,7 @@ export default function AuthForm({ mode }) {
           </p>
           <h1 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
             {isSignup
-              ? "Join Succulent Hut and save your details for faster checkout."
+              ? "Create an account and save your details for faster checkout."
               : "Sign in to manage your profile, theme, and saved checkout info."}
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-6 text-white/70 dark:text-black/70 md:text-base">

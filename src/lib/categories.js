@@ -4,73 +4,73 @@ const CATEGORY_ALIASES = {
     href: "/shop",
     aliases: [],
   },
-  plants: {
-    title: "Plants",
-    href: "/shop?category=plants",
-    aliases: ["Plants"],
+  "banarasi-sarees": {
+    title: "Banarasi Sarees",
+    href: "/shop?category=banarasi-sarees",
+    aliases: ["Banarasi Sarees", "Banarasi"],
   },
-  soil: {
-    title: "Media",
-    href: "/shop?category=soil",
-    aliases: ["Media", "Media (Soil)", "Soil"],
+  "cotton-sarees": {
+    title: "Cotton Sarees",
+    href: "/shop?category=cotton-sarees",
+    aliases: ["Cotton Sarees", "Cotton"],
   },
-  planters: {
-    title: "Planters",
-    href: "/shop?category=planters",
-    aliases: ["Planters"],
+  "jamdani-sarees": {
+    title: "Jamdani Sarees",
+    href: "/shop?category=jamdani-sarees",
+    aliases: ["Jamdani Sarees", "Jamdani"],
   },
-  "garden-accessories": {
-    title: "Garden Accessories",
-    href: "/shop?category=garden-accessories",
-    aliases: ["Garden Accessories"],
+  "silk-sarees": {
+    title: "Silk Sarees",
+    href: "/shop?category=silk-sarees",
+    aliases: ["Silk Sarees", "Silk"],
   },
-  "air-plant-holders": {
-    title: "Air Plant Holders",
-    href: "/shop?category=air-plant-holders",
-    aliases: ["Air Plant Holders"],
+  "tant-sarees": {
+    title: "Tant Sarees",
+    href: "/shop?category=tant-sarees",
+    aliases: ["Tant Sarees", "Tant"],
   },
 };
 
 export const HOMEPAGE_CATEGORY_CARDS = [
   {
-    slug: "plants",
-    title: "Plants",
-    href: "/shop?category=plants",
+    slug: "banarasi-sarees",
+    title: "Banarasi Sarees",
+    href: "/shop?category=banarasi-sarees",
     image: "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780243572/shrubs_sssy3v.jpg",
   },
   {
-    slug: "soil",
-    title: "Media",
-    href: "/shop?category=soil",
+    slug: "cotton-sarees",
+    title: "Cotton Sarees",
+    href: "/shop?category=cotton-sarees",
     image: "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780243570/cacti_jayknk.jpg",
   },
   {
-    slug: "planters",
-    title: "Planters",
-    href: "/shop?category=planters",
+    slug: "jamdani-sarees",
+    title: "Jamdani Sarees",
+    href: "/shop?category=jamdani-sarees",
     image: "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780243570/herbs_lwlidn.jpg",
   },
   {
-    slug: "garden-accessories",
-    title: "Garden Accessories",
-    href: "/shop?category=garden-accessories",
+    slug: "silk-sarees",
+    title: "Silk Sarees",
+    href: "/shop?category=silk-sarees",
     image: "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780243570/bamboo_nl0mwr.jpg",
   },
   {
-    slug: "air-plant-holders",
-    title: "Air Plant Holders",
-    href: "/shop?category=air-plant-holders",
+    slug: "tant-sarees",
+    title: "Tant Sarees",
+    href: "/shop?category=tant-sarees",
     image: "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780243570/orchids_fubtjf.jpg",
   },
 ];
 
 export const MOBILE_CATEGORY_CHIPS = [
   { slug: "all", ...CATEGORY_ALIASES.all },
-  { slug: "plants", ...CATEGORY_ALIASES.plants },
-  { slug: "soil", ...CATEGORY_ALIASES.soil },
-  { slug: "planters", ...CATEGORY_ALIASES.planters },
-  { slug: "garden-accessories", ...CATEGORY_ALIASES["garden-accessories"] },
-  { slug: "air-plant-holders", ...CATEGORY_ALIASES["air-plant-holders"] },
+  { slug: "banarasi-sarees", ...CATEGORY_ALIASES["banarasi-sarees"] },
+  { slug: "cotton-sarees", ...CATEGORY_ALIASES["cotton-sarees"] },
+  { slug: "jamdani-sarees", ...CATEGORY_ALIASES["jamdani-sarees"] },
+  { slug: "silk-sarees", ...CATEGORY_ALIASES["silk-sarees"] },
+  { slug: "tant-sarees", ...CATEGORY_ALIASES["tant-sarees"] },
 ];
 
 export function createCategorySlug(value) {

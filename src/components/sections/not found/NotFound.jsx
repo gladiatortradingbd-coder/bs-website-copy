@@ -20,9 +20,8 @@ const NotFound = () => {
               <div className="mg-top-small mt-5">
                 <div className="inner-container _400px _100-tablet">
                   <p className="paragraph-large text-muted-foreground leading-8">
-                    Lorem ipsum dolor sit amet consectetur mi ut tortor
-                    bibendum auctor sit tortor scelerisque nulla sed tellus
-                    nisl sit risus.
+                    The page you are looking for may have moved. Return home to
+                    continue exploring our saree collection.
                   </p>
                 </div>
               </div>

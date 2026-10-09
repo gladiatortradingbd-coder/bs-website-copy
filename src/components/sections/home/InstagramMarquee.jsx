@@ -6,7 +6,7 @@ import FadeIn from "@/components/ui/FadeIn"
 const posts = [
     {
         image:
-            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244770/AstrophytumCapricornCactus_twgfjw.jpg",
+            "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1790953275/mariab-mprints_bevali.jpg",
         likes: "126k",
         comments: "2.4k",
     },
@@ -57,13 +57,13 @@ export default function InstagramMarquee() {
                         </p>
 
                         <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-5xl">
-                            Follow us on @succulenthutt
+                            Follow us on @aarong
                         </h2>
                     </div>
                     </FadeIn>
 
                     <FadeIn direction="up" delay={200}>
-                    <Button href="https://www.instagram.com/succulenthutt" target="_blank" rel="noreferrer" variant="primary" size="lg" className="btn-shimmer rounded-full bg-black dark:bg-white px-5 py-2 text-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 sm:px-7 sm:py-4">
+                    <Button href="https://www.instagram.com/aarong" target="_blank" rel="noreferrer" variant="primary" size="lg" className="btn-shimmer rounded-full bg-black dark:bg-white px-5 py-2 text-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 sm:px-7 sm:py-4">
                         <Icon
                             icon="mdi:instagram"
                             className="text-[22px]"
@@ -110,11 +110,11 @@ export default function InstagramMarquee() {
 
                                         <div>
                                             <h4 className="font-semibold text-white dark:text-black">
-                                                succulenthutt
+                                                aarong
                                             </h4>
 
                                             <p className="text-sm text-neutral-400">
-                                                @succulenthutt
+                                                @aarong
                                             </p>
                                         </div>
                                     </div>

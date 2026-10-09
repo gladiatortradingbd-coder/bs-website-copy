@@ -2,33 +2,33 @@ import { Icon } from "@/lib/iconify";
 
 const values = [
   {
-    title: "Eco friendly",
-    desc: "We prioritize sustainable materials and responsible production methods.",
+    title: "Thoughtfully made",
+    desc: "We value skilled craftsmanship, quality fabrics, and responsible choices.",
     icon: "lucide:leaf",
   },
   {
-    title: "Ethical",
-    desc: "Fair practices, honest work, and respect for people and nature.",
+    title: "Authentic",
+    desc: "We celebrate heritage techniques, honest service, and genuine design.",
     icon: "lucide:shield-check",
   },
   {
-    title: "Done with love",
-    desc: "Every product is crafted with care and attention to detail.",
+    title: "Made with love",
+    desc: "Every saree is selected with care and attention to detail.",
     icon: "lucide:heart",
   },
   {
-    title: "Hard work",
-    desc: "Consistency and discipline drive everything we build.",
+    title: "Reliability",
+    desc: "We work hard to make every order smooth, simple, and dependable.",
     icon: "lucide:hammer",
   },
   {
-    title: "Diverse selection",
-    desc: "A wide range of products to meet different needs and tastes.",
+    title: "Expressive style",
+    desc: "A versatile collection for different occasions, tastes, and personalities.",
     icon: "lucide:layout-grid",
   },
   {
-    title: "High quality",
-    desc: "We never compromise on quality and long-term value.",
+    title: "Lasting quality",
+    desc: "We choose fabrics and finishes that look beautiful and feel wonderful to wear.",
     icon: "lucide:award",
   },
 ];

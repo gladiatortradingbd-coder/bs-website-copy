@@ -13,13 +13,13 @@ export default function OurStorySection() {
           <article>
 
             {/* Heading */}
-            <h2 className="max-w-xl text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">Our story started 4 years ago</h2>
+            <h2 className="max-w-xl text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">A love for sarees, woven into every story</h2>
 
             {/* Paragraph */}
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Lorem ipsum dolor sit amet consectetur amet amet rhoncus enim
-              in fermentum pharetra ullamcorper ut netus et interdum mi
-              rhoncus egestas mauris.
+              We curate expressive sarees that honour traditional craftsmanship while
+              fitting beautifully into modern life. From festive gatherings to everyday
+              elegance, each piece is chosen to help you dress with confidence.
             </p>
 
             {/* Stats */}
@@ -39,7 +39,7 @@ export default function OurStorySection() {
                   <h3 className="text-2xl sm:text-3xl font-bold text-foreground">100<span className="text-neutral-400">%</span></h3>
 
                   <p className="mt-1 text-base text-muted-foreground">
-                    Client satisfaction
+                    Customer satisfaction
                   </p>
                 </div>
               </li>

@@ -5,33 +5,33 @@ import Image from "next/image"
 const testimonials = [
   {
     quote:
-      "Best plants I've ever bought, thriving beautifully in my home garden!",
-    name: "John Carter",
-    location: "New York, NY",
+      "The craftsmanship and colours of my saree are even more beautiful in person!",
+    name: "Nusrat Rahman",
+    location: "Dhaka, Bangladesh",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244356/photo-1500648767791-00dcc994a43e_xgvqav.jpg",
   },
   {
     quote:
-      "Our garden flourishes thanks to these incredible, high-quality plants!",
-    name: "Lilly Woods",
-    location: "Chicago, IL",
+      "Beautiful fabric, fast delivery, and a perfect drape for my family celebration.",
+    name: "Farhana Akter",
+    location: "Chattogram, Bangladesh",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244385/photo-1494790108377-be9c29b29330_nycy5j.jpg",
   },
   {
     quote:
-      "Top-quality plants, vibrant and healthy, the best I've ever purchased!",
-    name: "Matt Cannon",
-    location: "Los Angeles, CA",
+      "The details on my Jamdani saree are exquisite. I will definitely shop again.",
+    name: "Maliha Sultana",
+    location: "Sylhet, Bangladesh",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244408/photo-1506794778202-cad84cf45f1d_nh1gsb.jpg",
   },
   {
     quote:
-      "These plants transformed our garden, truly the best quality available!",
-    name: "Sophie Moore",
-    location: "San Francisco, CA",
+      "A timeless collection with excellent quality and thoughtful packaging.",
+    name: "Sumaiya Chowdhury",
+    location: "Rajshahi, Bangladesh",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244439/photo-1438761681033-6461ffad8d80_x7imzt.jpg",
   },

@@ -43,12 +43,12 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Blog post not found | Succulent Hut",
+      title: "Journal article not found | Aarong",
     };
   }
 
   return {
-    title: post.metaTitle || `${post.title} | Succulent Hut`,
+    title: post.metaTitle || `${post.title} | Aarong`,
     description: post.metaDescription || post.excerpt,
     openGraph: {
       title: post.metaTitle || post.title,

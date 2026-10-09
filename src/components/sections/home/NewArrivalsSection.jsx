@@ -12,7 +12,7 @@ const products = [
     {
         id: 1,
         name: "Pink Princess",
-        category: "Rare Indoor",
+        category: "Banarasi Sarees",
         price: "Tk 34",
         image:
             "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?q=80&w=1200&auto=format&fit=crop",
@@ -20,7 +20,7 @@ const products = [
     {
         id: 2,
         name: "Golden Barrel",
-        category: "Cactus",
+        category: "Cotton Sarees",
         price: "Tk 18",
         image:
             "https://images.unsplash.com/photo-1459156212016-c812468e2115?q=80&w=1200&auto=format&fit=crop",
@@ -28,7 +28,7 @@ const products = [
     {
         id: 3,
         name: "Calathea Orbifolia",
-        category: "Tropical",
+        category: "Jamdani Sarees",
         price: "Tk 28",
         image:
             "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop",
@@ -36,7 +36,7 @@ const products = [
     {
         id: 4,
         name: "Mini Bonsai",
-        category: "Decorative",
+        category: "Silk Sarees",
         price: "Tk 42",
         image:
             "https://images.unsplash.com/photo-1512428813834-c702c7702b78?q=80&w=1200&auto=format&fit=crop",
@@ -44,23 +44,23 @@ const products = [
     {
         id: 5,
         name: "White Orchid",
-        category: "Flowering",
+        category: "Tant Sarees",
         price: "Tk 26",
         image:
             "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 6,
-        name: "Jade Plant",
-        category: "Succulent",
+        name: "Printed Cotton Saree",
+        category: "Cotton Sarees",
         price: "Tk 16",
         image:
             "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop",
     },
     {
         id: 7,
-        name: "Rubber Plant",
-        category: "Indoor",
+        name: "Lightweight Silk Saree",
+        category: "Silk Sarees",
         price: "Tk 22",
         image:
             "https://images.unsplash.com/photo-1463154545680-d59320fd685d?q=80&w=1200&auto=format&fit=crop",
@@ -68,7 +68,7 @@ const products = [
     {
         id: 8,
         name: "Peace Lily",
-        category: "Flowering",
+        category: "Banarasi Sarees",
         price: "Tk 19",
         image:
             "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=1200&auto=format&fit=crop",
@@ -143,7 +143,7 @@ export default async function NewArrivals() {
                         </div>
 
                         <h2 className="max-w-[18rem] text-[1.05rem] font-semibold leading-tight text-foreground sm:max-w-md sm:text-2xl md:max-w-2xl md:text-5xl">
-                            Fresh arrivals crafted for modern plant lovers
+                            Fresh arrivals for the modern saree wardrobe
                         </h2>
                     </div>
                     </FadeIn>

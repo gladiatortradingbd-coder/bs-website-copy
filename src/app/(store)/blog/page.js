@@ -3,8 +3,8 @@ import BlogPostsSection from "@/components/sections/blog/BlogSection";
 import { getPublishedBlogPosts } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blog | Succulent Hut",
-  description: "SEO-friendly plant care articles, tips, and inspiration from Succulent Hut.",
+  title: "Style Journal | Aarong",
+  description: "Saree styling ideas, fabric guides, care tips, and inspiration from Aarong.",
 };
 
 export default async function BlogPage() {

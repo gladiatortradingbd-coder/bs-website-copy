@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import PlantSlider from "@/components/ui/Slider";
+import CategorySlider from "@/components/ui/Slider";
 import Button from "@/components/ui/Button";
 import { DEFAULT_HERO_IMAGE } from "@/data/hero";
 
@@ -93,7 +93,7 @@ export default function HeroCarousel({ images }) {
               </div>
             </>
           ) : null}
-          <div className="absolute bottom-0 left-0 z-20 w-full"><PlantSlider /></div>
+          <div className="absolute bottom-0 left-0 z-20 w-full"><CategorySlider /></div>
         </div>
       </div>
     </section>

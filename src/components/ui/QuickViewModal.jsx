@@ -212,7 +212,7 @@ export default function QuickViewModal({ open, onClose, product, wishlistItem, h
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-muted px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  {product?.category || "Plant"}
+                  {product?.category || "Saree"}
                 </span>
                 {reviewCount > 0 ? (
                   <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-700">
@@ -261,7 +261,7 @@ export default function QuickViewModal({ open, onClose, product, wishlistItem, h
               {displayPrice ? (
                 <div className="flex items-end gap-3">
                   <p className="text-3xl font-semibold tracking-tight text-neutral-950">{displayPrice}</p>
-                  <p className="pb-1 text-xs uppercase tracking-[0.18em] text-neutral-400">per plant</p>
+                  <p className="pb-1 text-xs uppercase tracking-[0.18em] text-neutral-400">per saree</p>
                 </div>
               ) : null}
             </div>

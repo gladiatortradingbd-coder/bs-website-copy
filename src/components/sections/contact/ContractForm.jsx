@@ -50,7 +50,7 @@ export default function ContactForm() {
               <nav className="mt-8" aria-label="Social media links">
                 <ul className="flex items-center gap-4">
                   <li>
-                    <a href="https://www.facebook.com/SucculentHutt" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gray-300 dark:border-neutral-600 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition" aria-label="Facebook">
+                    <a href="https://www.facebook.com/aarong" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gray-300 dark:border-neutral-600 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition" aria-label="Facebook">
                       <Icon icon="mdi:facebook" width={18} height={18} />
                     </a>
                   </li>
@@ -60,7 +60,7 @@ export default function ContactForm() {
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.instagram.com/succulenthutt" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gray-300 dark:border-neutral-600 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition" aria-label="Instagram">
+                    <a href="https://www.instagram.com/aarong" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full border border-gray-300 dark:border-neutral-600 flex items-center justify-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition" aria-label="Instagram">
                       <Icon icon="mdi:instagram" width={18} height={18} />
                     </a>
                   </li>

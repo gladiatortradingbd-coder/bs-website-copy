@@ -19,10 +19,10 @@ export default async function CategoriesSection() {
           <div className="max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-[0.3em] text-emerald-700">Categories</p>
             <h2 className="mt-3 font-display text-4xl font-semibold leading-tight sm:text-6xl">
-              Find the right fit for your garden
+              Find your signature style
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Explore plants, media, planters, and everything else you need to grow beautifully.
+              Discover beautifully crafted sarees for celebrations, everyday elegance, and every special moment.
             </p>
           </div>
 
@@ -30,7 +30,7 @@ export default async function CategoriesSection() {
             href="/shop"
             className="inline-flex w-fit items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5"
           >
-            Shop all categories
+            Explore all collections
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

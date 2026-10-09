@@ -4,26 +4,26 @@ import { useState } from "react";
 
 const offices = [
   {
-    city: "New York, NY",
-    address: "123 Main Street, New York, NY 10001",
+    city: "Dhaka Flagship",
+    address: "H-145, Road 5, Kalshi, Mirpur 11, Dhaka",
     description:
-      "A central hub connecting operations and customer support across the East Coast.",
+      "Explore our signature collection and receive personal styling help from our team.",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246194/677c0cb8cb8c7ef4098f2769_new-york-office-store-x-webflow-template_md8roh.jpg",
   },
   {
-    city: "San Francisco, CA",
-    address: "58 Middle Point Rd, San Francisco, CA 94124",
+    city: "Chattogram Store",
+    address: "GEC Circle, Chattogram, Bangladesh",
     description:
-      "Our innovation center focusing on product development and technology.",
+      "Discover occasion-ready sarees, new arrivals, and thoughtful gift ideas.",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246207/677c0cb8cb8c7ef4098f276b_san-francisco-office-store-x-webflow-template_qwg0pw.jpg",
   },
   {
-    city: "Chicago, IL",
-    address: "1355 N Sandburg Terrace, Chicago, IL 60610",
+    city: "Sylhet Store",
+    address: "Zindabazar, Sylhet, Bangladesh",
     description:
-      "Midwest operations base ensuring smooth logistics and coordination.",
+      "Find handloom favourites and timeless pieces for your everyday wardrobe.",
     image:
       "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246273/677c0cb8cb8c7ef4098f276a_chicago-office-store-x-webflow-template_kkyrfl.jpg",
   },
@@ -39,11 +39,10 @@ export default function VisitOurOffices() {
         {/* Header */}
         <header className="text-center max-w-xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold">
-            Visit our offices
+            Visit our stores
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            We maintain strong physical presence across key cities to serve
-            clients with reliability and trust.
+            Visit us in person to explore fabrics, colours, and new collections with our team.
           </p>
         </header>
 

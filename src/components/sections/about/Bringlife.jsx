@@ -38,13 +38,13 @@ export default function CommitmentSection() {
                             </div>
 
                             {/* Heading */}
-                            <h2 className="max-w-xl text-2xl font-semibold leading-tight tracking-tight text-white dark:text-black sm:text-4xl md:text-5xl">We are committed to bring life to your home with plants</h2>
+                            <h2 className="max-w-xl text-2xl font-semibold leading-tight tracking-tight text-white dark:text-black sm:text-4xl md:text-5xl">We bring timeless elegance to every wardrobe</h2>
 
                             {/* Paragraph */}
                             <p className="mt-4 max-w-lg text-sm leading-relaxed text-neutral-400 sm:text-lg">
-                                We believe every home deserves warmth, freshness, and
-                                natural beauty. Our mission is to deliver premium plants
-                                that elevate spaces and improve everyday living.
+                                We believe every woman deserves clothing that feels special,
+                                comfortable, and uniquely her own. Our mission is to bring
+                                beautifully crafted sarees to every celebration and everyday moment.
                             </p>
 
                             {/* Features */}
@@ -52,17 +52,17 @@ export default function CommitmentSection() {
 
                                 <FeatureItem
                                     icon="solar:leaf-bold"
-                                    text="Premium quality indoor plants"
+                                    text="Beautiful fabrics and thoughtful craftsmanship"
                                 />
 
                                 <FeatureItem
                                     icon="solar:box-bold"
-                                    text="Secure and eco-friendly packaging"
+                                    text="Carefully packed for a special unboxing"
                                 />
 
                                 <FeatureItem
                                     icon="solar:shield-check-bold"
-                                    text="Trusted by thousands of customers"
+                                    text="Loved by saree enthusiasts across Bangladesh"
                                 />
                             </ul>
 
@@ -83,7 +83,7 @@ export default function CommitmentSection() {
                             {/* Overlay */}
                             <div className="absolute inset-0 z-10 pointer-events-none bg-linear-to-r from-black/20 via-transparent to-transparent" />
 
-                            <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245842/photo-1512428813834-c702c7702b78_u9r7yv.jpg" alt="Plants" fill className="object-cover" />
+                            <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245842/photo-1512428813834-c702c7702b78_u9r7yv.jpg" alt="Elegant saree collection" fill className="object-cover" />
 
                             {/* Floating Card */}
                             <div
