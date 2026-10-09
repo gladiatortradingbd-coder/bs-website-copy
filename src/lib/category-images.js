@@ -1,6 +1,16 @@
 import clientPromise from "@/lib/mongodb";
 import { createCategorySlug, HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
 
+export function getDeletedCategorySlugs(records) {
+  return new Set(
+    records
+      .filter((record) => record.deleted)
+      .flatMap((record) => [record.slug, record.legacySlug, record.title])
+      .map((value) => createCategorySlug(value))
+      .filter(Boolean),
+  );
+}
+
 function mapStoredCategory(category, fallback) {
   const storedTitle = String(category?.title ?? "").trim();
   const title = storedTitle || fallback.title;
@@ -19,6 +29,7 @@ export async function getHomepageCategoryCards() {
     const client = await clientPromise;
     const collection = client.db().collection("category_images");
     const records = await collection.find({}).toArray();
+    const deletedCategorySlugs = getDeletedCategorySlugs(records);
     const bySlug = new Map();
 
     records.forEach((record) => {
@@ -38,13 +49,6 @@ export async function getHomepageCategoryCards() {
       }
     });
 
-    const deletedFallbackSlugs = new Set(
-      records
-        .filter((record) => record.deleted)
-        .flatMap((record) => [record.slug, record.legacySlug])
-        .map((slug) => String(slug ?? "").trim())
-        .filter(Boolean),
-    );
     const storedCategories = records
       .filter((record) => !record.deleted)
       .map((record) => {
@@ -62,12 +66,13 @@ export async function getHomepageCategoryCards() {
               updatedAt: record.updatedAt ?? null,
             };
       })
+      .filter((category) => !deletedCategorySlugs.has(createCategorySlug(category.slug)))
       .filter((category) => !records.some((record) => String(record.legacySlug ?? "").trim() === category.slug))
       .filter((category) => category.slug && category.title && category.image);
 
     const storedSlugs = new Set(storedCategories.map((category) => category.slug));
     const defaults = HOMEPAGE_CATEGORY_CARDS
-      .filter((fallback) => !storedSlugs.has(fallback.slug) && !deletedFallbackSlugs.has(fallback.slug))
+      .filter((fallback) => !storedSlugs.has(fallback.slug) && !deletedCategorySlugs.has(fallback.slug))
       .map((fallback) => mapStoredCategory(null, fallback));
 
     return [...defaults, ...storedCategories];

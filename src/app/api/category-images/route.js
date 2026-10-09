@@ -4,6 +4,7 @@ import { getAuthSession } from "@/auth";
 import { deletePhotoFromCloudinary, uploadPhotoToCloudinary } from "@/lib/cloudinary";
 import clientPromise from "@/lib/mongodb";
 import { createCategorySlug, getFallbackCategory, HOMEPAGE_CATEGORY_CARDS } from "@/lib/categories";
+import { getDeletedCategorySlugs } from "@/lib/category-images";
 
 async function requireAdmin() {
   const session = await getAuthSession();
@@ -27,6 +28,7 @@ export async function GET() {
   try {
     const client = await clientPromise;
     const records = await client.db().collection("category_images").find({}).toArray();
+    const deletedCategorySlugs = getDeletedCategorySlugs(records);
     const storedBySlug = new Map();
 
     records.forEach((record) => {
@@ -45,15 +47,8 @@ export async function GET() {
         storedBySlug.set(legacySlug, record);
       }
     });
-    const deletedFallbackSlugs = new Set(
-      records
-        .filter((record) => record.deleted)
-        .flatMap((record) => [record.slug, record.legacySlug])
-        .map((slug) => String(slug ?? "").trim())
-        .filter(Boolean),
-    );
     const categories = HOMEPAGE_CATEGORY_CARDS
-      .filter((fallback) => !deletedFallbackSlugs.has(fallback.slug))
+      .filter((fallback) => !deletedCategorySlugs.has(fallback.slug))
       .map((fallback) => ({
         slug: storedBySlug.get(fallback.slug)?.title
           ? createCategorySlug(String(storedBySlug.get(fallback.slug).title).trim())
@@ -72,7 +67,15 @@ export async function GET() {
       const title = String(record.title ?? "").trim();
       const image = String(record.image ?? "").trim();
 
-      if (slug && title && image && !defaultSlugs.has(slug) && !record.legacySlug && !record.deleted) {
+      if (
+        slug &&
+        title &&
+        image &&
+        !defaultSlugs.has(slug) &&
+        !record.legacySlug &&
+        !record.deleted &&
+        !deletedCategorySlugs.has(createCategorySlug(slug))
+      ) {
         categories.push({
           slug,
           title,
