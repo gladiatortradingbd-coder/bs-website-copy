@@ -53,7 +53,14 @@ export async function GET() {
       }
     }
 
-    return NextResponse.json({ categories });
+    return NextResponse.json(
+      { categories },
+      {
+        headers: {
+          "Cache-Control": "no-store, max-age=0",
+        },
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       { message: error instanceof Error ? error.message : "Could not load categories." },
@@ -123,6 +130,7 @@ export async function POST(request) {
     );
 
     revalidatePath("/", "page");
+    revalidatePath("/api/category-images");
 
     return NextResponse.json({
       message: "Category image updated successfully.",
@@ -170,6 +178,7 @@ export async function DELETE(request) {
     }
     revalidatePath("/", "page");
     revalidatePath("/shop", "page");
+    revalidatePath("/api/category-images");
 
     return NextResponse.json({ message: "Category deleted successfully." });
   } catch (error) {

@@ -74,7 +74,7 @@ export default function AddProductForm({ mode = "create", product = null, onSucc
 
   useEffect(() => {
     let ignore = false;
-    fetch("/api/category-images")
+    fetch("/api/category-images", { cache: "no-store" })
       .then((response) => response.json())
       .then((data) => {
         if (!ignore && Array.isArray(data.categories)) {
