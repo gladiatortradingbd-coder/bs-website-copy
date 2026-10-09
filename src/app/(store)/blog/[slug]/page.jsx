@@ -2,6 +2,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getPublishedBlogPosts } from "@/lib/blog";
 
+export const revalidate = 0;
+
 // Pre-render published blog posts at build time (static pages)
 export async function generateStaticParams() {
   try {

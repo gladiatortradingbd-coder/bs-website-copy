@@ -19,8 +19,8 @@ export default async function Home() {
       <HeroSection images={heroImages} />
       <CategoriesSection />
       <BestSellers />
-      <NewArrivalsSection />
       <TestimonialMarquee />
+      <NewArrivalsSection />
       <InstagramMarquee />
       <PlantCareSection />
     </main>

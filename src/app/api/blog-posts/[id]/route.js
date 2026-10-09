@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/auth";
 import { getBlogCollection, getBlogPostById, mapBlogPost } from "@/lib/blog";
@@ -149,6 +150,9 @@ export async function PATCH(request, { params }) {
       { _id: new ObjectId(postId) },
       { $set: updatedBlogPost },
     );
+    revalidatePath("/blog", "page");
+    revalidatePath(`/blog/${existingPost.slug}`);
+    revalidatePath(`/blog/${updatedBlogPost.slug}`);
 
     if (existingCoverImage && existingCoverImage !== updatedBlogPost.coverImage) {
       void deletePhotoFromCloudinary(existingCoverImage);
@@ -197,6 +201,8 @@ export async function DELETE(_request, { params }) {
     if (existingPost.coverImage) {
       void deletePhotoFromCloudinary(existingPost.coverImage);
     }
+    revalidatePath("/blog", "page");
+    revalidatePath(`/blog/${existingPost.slug}`);
 
     return NextResponse.json({ message: "Blog post deleted successfully." });
   } catch (error) {

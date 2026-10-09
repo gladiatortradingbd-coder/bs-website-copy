@@ -10,7 +10,7 @@ const articles = [
     category: "Style Guide",
     date: "May 10, 2026",
     image:
-      "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780244848/photo-1466692476868-aef1dfb1e735_gbp9gb.jpg",
+      "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576007/blog_6_fsylg9.jpg",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const articles = [
     category: "Saree Care",
     date: "May 08, 2026",
     image:
-      "https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780245134/photo-1459156212016-c812468e2115_arngzp.jpg",
+      "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791576007/blog_5_a1sdk5.jpg",
   },
 ];
 

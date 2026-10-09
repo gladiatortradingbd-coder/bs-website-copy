@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/auth";
 import { getBlogCollection, getPublishedBlogPosts, mapBlogPost } from "@/lib/blog";
@@ -142,6 +143,7 @@ export async function POST(request) {
     };
 
     const result = await collection.insertOne(blogPost);
+    revalidatePath("/blog", "page");
 
     return NextResponse.json({
       message: "Blog post created successfully.",
