@@ -41,7 +41,7 @@ export default function Footer() {
           {/* Column 1: Logo & About */}
           <div className="flex flex-col gap-4 text-center sm:text-left">
             <div className="flex items-center gap-2 justify-center sm:justify-start">
-              <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/f_auto,q_auto,w_600/v1780246900/logo_vze88h.png" alt={footer.companyName || 'logo'} width={56} height={56} className="rounded" />
+              <Image src="https://res.cloudinary.com/drbe0jtgw/image/upload/v1780689937/logop2_mm0ib4.svg" alt={footer.companyName || 'logo'} width={56} height={56} className="rounded" />
               <span className="text-2xl font-bold tracking-wider">{footer.companyName}</span>
             </div>
             <p className="opacity-80 leading-relaxed">

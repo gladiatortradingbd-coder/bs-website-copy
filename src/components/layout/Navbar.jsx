@@ -14,7 +14,7 @@ import WishlistLink from "@/components/ui/WishlistLink";
 import UserMenu from "@/components/layout/UserMenu";
 import { useCart } from "@/context/CartContext";
 
-const LOGO_SRC = "https://res.cloudinary.com/drbe0jtgw/image/upload/v1791582557/logo_bgxxa4.png";
+const LOGO_SRC = "https://res.cloudinary.com/drbe0jtgw/image/upload/v1780689937/logop2_mm0ib4.svg";
 
 const navLinks = [
   { href: "/", label: "Home" },
