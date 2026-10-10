@@ -303,8 +303,24 @@ export default function Navbar() {
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
-                    <Button href="/login" variant="primary" size="sm" className="justify-center px-4 py-3.5 text-sm rounded-xl shadow-md">Login</Button>
-                    <Button href="/signup" variant="secondary" size="sm" className="justify-center px-4 py-3.5 text-sm rounded-xl">Sign up</Button>
+                    <Button
+                      href="/login"
+                      variant="primary"
+                      size="sm"
+                      className="justify-center px-4 py-3.5 text-sm rounded-xl shadow-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      href="/signup"
+                      variant="secondary"
+                      size="sm"
+                      className="justify-center px-4 py-3.5 text-sm rounded-xl"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sign up
+                    </Button>
                   </div>
                 )}
               </div>
